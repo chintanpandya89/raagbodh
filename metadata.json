@@ -1,0 +1,7 @@
+{
+  "name": "Raagbodh",
+  "description": "An Indian Classical Music Raga detector using audio signal processing.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
