@@ -2,7 +2,14 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { SeparatedStream } from "../types";
 
 export class LayerDetectionService {
-  private static ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  private static aiClient: GoogleGenAI | null = null;
+
+  private static get ai(): GoogleGenAI {
+    if (!this.aiClient) {
+      this.aiClient = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    }
+    return this.aiClient;
+  }
 
   static async detectLayers(audioBlob: Blob): Promise<SeparatedStream[]> {
     try {
